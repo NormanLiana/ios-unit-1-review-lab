@@ -37,6 +37,36 @@ Britain is a history of repeated injuries and usurpations, all having in direct 
 establishment of an absolute Tyranny over these States. To prove this, let Facts be submitted to a
 candid world.
 """
+
+var newStr = declarationOfIndependence.replacingOccurrences(of: "\n", with: " ")
+let newStrNoPunc = newStr.components(separatedBy: .punctuationCharacters).joined()
+let arr = newStrNoPunc.components(separatedBy: " ")
+
+let longWord = arr.filter { (word) -> Bool in
+return word.count > 5
+}
+
+var emptyDict = [String:Int]()
+
+for word in longWord {
+if emptyDict[word] != nil {
+emptyDict[word]! += 1
+} else {
+emptyDict[word] = 1
+}
+}
+
+var greatestFreq = String()
+var valueCount = 0
+
+for (key, value) in emptyDict {
+if value > valueCount {
+valueCount = value
+greatestFreq = key
+}
+}
+
+print(greatestFreq)
 ```
 
 ## Question 2
